@@ -1,5 +1,6 @@
 
 import { useState, useCallback, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import ApiKeyForm from "@/components/weather/ApiKeyForm";
 import CitySearch from "@/components/weather/CitySearch";
@@ -8,6 +9,7 @@ import ForecastWeather from "@/components/weather/ForecastWeather";
 import WeatherBackground from "@/components/weather/WeatherBackground";
 import { fetchWeather, fetchForecast, WeatherData, ForecastDay } from "@/utils/weatherApi";
 import { saveRecentCity } from "@/utils/storage";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [apiKey, setApiKey] = useState<string | null>(null);
@@ -56,9 +58,16 @@ const Index = () => {
   return (
     <WeatherBackground weatherCondition={currentWeather?.icon}>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-6 text-white drop-shadow-md">
-          Weather Dashboard
-        </h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-center text-white drop-shadow-md">
+            Weather Dashboard
+          </h1>
+          <Link to="/traffic-signs">
+            <Button variant="outline" className="bg-white/20 text-white hover:bg-white/30">
+              Traffic Signs Database
+            </Button>
+          </Link>
+        </div>
 
         {!apiKey ? (
           <div className="max-w-md mx-auto">
